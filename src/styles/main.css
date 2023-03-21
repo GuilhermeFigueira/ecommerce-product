@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: subpixel-antialiased;
+}
+.swiperNavPrev,
+.swiperNavNext {
+	@apply absolute z-10 flex items-center justify-center h-10 w-10 rounded-full cursor-pointer top-1/2 bg-white mx-4;
+}
+.swiperNavPrev {
+	@apply left-0;
+}
+.swiperNavNext {
+	@apply right-0;
+}
