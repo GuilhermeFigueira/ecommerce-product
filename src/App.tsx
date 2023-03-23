@@ -1,17 +1,20 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SwiperNav from "./components/SwiperNav";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import CartModal from "./components/CartModal";
+import { CartContext } from "./contexts/CartInfo";
 
 function App() {
-	const [quantity, setQuantity] = useState(0);
 	function incrementQuantity(increment: boolean) {
 		increment
-			? setQuantity((quantity) => quantity + 1)
-			: quantity !== 0 && setQuantity((quantity) => quantity - 1);
+			? setSneakerQuantity((sneakerQuantity) => sneakerQuantity + 1)
+			: sneakerQuantity !== 0 &&
+			  setSneakerQuantity((sneakerQuantity) => sneakerQuantity - 1);
 	}
+	const { setSneakerQuantity, sneakerQuantity, setIsOnCart } =
+		useContext(CartContext);
 	return (
 		<div>
 			<nav className="sticky top-0  z-10 flex flex-row w-full justify-between p-4 bg-white">
@@ -101,7 +104,7 @@ function App() {
 						-
 					</button>
 					<h4 className="text-blue-very_dark font-bold text-xl">
-						{quantity}
+						{sneakerQuantity}
 					</h4>
 					<button
 						onClick={() => incrementQuantity(true)}
@@ -110,7 +113,12 @@ function App() {
 						+
 					</button>
 				</div>
-				<button className="flex flex-row justify-center w-full gap-4 bg-orange-default rounded-xl p-4 text-white">
+				<button
+					onClick={() => {
+						sneakerQuantity !== 0 && setIsOnCart(sneakerQuantity);
+					}}
+					className="flex flex-row justify-center w-full gap-4 bg-orange-default rounded-xl p-4 text-white"
+				>
 					<svg
 						width="22"
 						height="20"
