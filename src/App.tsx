@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import CartModal from "./components/CartModal";
 import { CartContext } from "./contexts/CartInfo";
+import { motion } from "framer-motion";
 
 function App() {
 	function incrementQuantity(increment: boolean) {
@@ -15,20 +16,44 @@ function App() {
 	}
 	const { setSneakerQuantity, sneakerQuantity, setIsOnCart } =
 		useContext(CartContext);
+	const [navActive, setNavActive] = useState(false);
+
 	return (
 		<div>
 			<nav className="sticky top-0  z-10 flex flex-row w-full justify-between p-4 bg-white">
-				<div className="flex flex-row gap-4 items-center">
-					<img src="/icon-menu.svg" alt="" />
-					<img src="/logo.svg" alt="" />
+				<div className="flex flex-row gap-8 items-center">
+					<div className="flex flex-row gap-4 items-center">
+						<button onClick={() => setNavActive(true)}>
+							<img
+								src="/icon-menu.svg"
+								alt=""
+								className="sm:hidden"
+							/>
+						</button>
+						<img src="/logo.svg" alt="" />
+					</div>
+					<motion.div
+						initial={{ left: "-100vw" }}
+						animate={navActive ? { left: 0 } : { left: "-100vw" }}
+						transition={{
+							type: "spring",
+							stiffness: 400,
+							damping: 100,
+						}}
+						className="absolute top-0 left-0  bg-white h-screen w-64 gap-14 flex flex-col items-start p-8 drop-shadow-2xl"
+					>
+						<button onClick={() => setNavActive(false)}>
+							<img src="/icon-close.svg" alt="" />
+						</button>
+						<ul className="flex flex-col gap-4 font-bold text-lg ">
+							<li>Collections</li>
+							<li>Men</li>
+							<li>Women</li>
+							<li>About</li>
+							<li>Contact</li>
+						</ul>
+					</motion.div>
 				</div>
-				{/* <ul className="flex flex-col ">
-					<li>Collections</li>
-					<li>Men</li>
-					<li>Women</li>
-					<li>About</li>
-					<li>Contact</li>
-				</ul> */}
 				<div className="flex flex-row gap-4 items-center  ">
 					<Dialog.Root>
 						<Dialog.Trigger>

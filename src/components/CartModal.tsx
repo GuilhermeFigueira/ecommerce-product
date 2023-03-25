@@ -4,8 +4,7 @@ import { CartContext } from "../contexts/CartInfo";
 
 export default function CartModal() {
 	const { isOnCart, setIsOnCart } = useContext(CartContext);
-	const [topPos, setTopPos] = useState("140px");
-	console.log(topPos);
+	const [topPos, setTopPos] = useState("130px");
 
 	return (
 		<Dialog.Portal>
@@ -23,7 +22,7 @@ export default function CartModal() {
 						<div className="p-4">
 							{isOnCart !== 0 ? (
 								<div
-									onLoad={() => setTopPos("170px")}
+									onLoad={() => setTopPos("185px")}
 									className="flex flex-col gap-4"
 								>
 									<div className="flex flex-row items-center gap-3 text-blue-dark_gray text-base">
@@ -46,7 +45,7 @@ export default function CartModal() {
 										<button
 											onClick={() => {
 												setIsOnCart(0);
-												setTopPos("140px");
+												setTopPos("130px");
 											}}
 											className="justify-center flex"
 										>
@@ -61,7 +60,7 @@ export default function CartModal() {
 									</button>
 								</div>
 							) : (
-								<h3 onLoad={() => setTopPos("140px")}>
+								<h3 onLoad={() => setTopPos("130px")}>
 									Your cart is empty
 								</h3>
 							)}
