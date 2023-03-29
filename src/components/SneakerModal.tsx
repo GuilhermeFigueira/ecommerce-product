@@ -15,7 +15,20 @@ export default function CartModal() {
 	return (
 		<Dialog.Portal>
 			<Dialog.Overlay className="DialogOverlay" />
-			<Dialog.Content className="fixed z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg  w-[95%] max-w-screen-sm ">
+			<Dialog.Content className="fixed z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg  w-[95%] max-w-screen-sm flex flex-col">
+				<Dialog.Close className="self-end">
+					<svg
+						width="20"
+						height="15"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+							fill="#fff"
+							fill-rule="evenodd"
+						/>
+					</svg>
+				</Dialog.Close>
 				<div className="flex flex-col gap-8 ">
 					<img src="" alt="" />
 					<Swiper
