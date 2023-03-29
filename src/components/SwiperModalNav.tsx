@@ -4,7 +4,7 @@ export default function SlideNextButton() {
 	const swiper = useSwiper();
 
 	return (
-		<div className="md:hidden">
+		<div>
 			<div className="swiperNavPrev">
 				<button onClick={() => swiper.slidePrev()}>
 					<img
